@@ -1,0 +1,56 @@
+[user]
+	name = Andi Wang
+	email = adw@uber.com
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+[url "ssh://gitolite@code.uber.internal/"]
+	insteadOf = git://code.uber.internal/
+[url "ssh://git@github.com/uber/"]
+	insteadOf = https://github.com/uber/
+[core]
+	editor = vim
+	excludesfile = /Users/andiwang/.gitignore_global
+
+[alias]
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+  # Pretty log output
+  hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
+
+[color]
+  # Use colors in Git commands that are capable of colored output when outputting to the terminal
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[url "ssh://gitolite@code.uber.internal:2222/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://code.uber.internal/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://config.uber.internal/"]
+	insteadOf = https://config.uber.internal/
+[http "https://gopkg.uberinternal.com"]
+	followRedirects = true
+[http "https://gopkg.in"]
+	followRedirects = true
+
