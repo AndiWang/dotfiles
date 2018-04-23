@@ -1,6 +1,6 @@
 [user]
 	name = Andi Wang
-	email = adw@uber.com
+	email = wangandi@mobike.com
 [branch]
 	autosetuprebase = always
 [rerere]
@@ -20,6 +20,10 @@
   remotes = remote -v
   # Pretty log output
   hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
 
 [color]
   # Use colors in Git commands that are capable of colored output when outputting to the terminal
@@ -53,4 +57,3 @@
 	followRedirects = true
 [http "https://gopkg.in"]
 	followRedirects = true
-
