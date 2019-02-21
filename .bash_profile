@@ -11,7 +11,7 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
 fi
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+  . $(brew --prefix)/etc/bash_completion
 fi
 
 # Detect which `ls` flavor is in use
@@ -41,10 +41,12 @@ alias grep='grep --color'
 # Shortcut to folders
 alias m="cd ~/Projects/Mobike"
 alias b="cd ~/Projects/BigONE"
-alias p="cd ~/Projects/peatio"
+alias o="cd ~/Projects/OYO"
 alias ms="cd $GOPATH/src/peatio/messenger"
+alias pa="cd $GOPATH/src/peatio/pxn-admin"
 alias g="cd $GOPATH"
-
+alias gup="git pull"
+alias gp="git push"
 # Python notebook
 alias notebook="cd ~/Projects/Mobike/notebook; jupyter-notebook"
 
@@ -53,3 +55,13 @@ if [ -f '/Users/andiwang/Downloads/google-cloud-sdk/path.bash.inc' ]; then sourc
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/andiwang/Downloads/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/andiwang/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+##
+# Your previous /Users/andiwang/.bash_profile file was backed up as /Users/andiwang/.bash_profile.macports-saved_2018-04-26_at_03:48:30
+##
+
+# MacPorts Installer addition on 2018-04-26_at_03:48:30: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
