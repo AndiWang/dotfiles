@@ -1,0 +1,12 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = AndiWang
+	email = andrewswang89@gmail.com
+[url "https://github.com/"]
+	insteadOf = git@github.com:gs
+[init]
+	templateDir = ~/.git-templates

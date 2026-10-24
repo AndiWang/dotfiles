@@ -1,0 +1,17 @@
+# Linux extras (harmless on macOS too), loaded from the end of `config` via `config-file = ?config.linux`.
+# The shared config's macOS keys (macos-*) are no-ops here; Cmd maps to Super,
+# which Windows/WSLg and most Linux desktops grab, so mirror those bindings on Ctrl+Alt.
+
+# Ctrl+Alt+Left/Right: beginning/end of line
+keybind = ctrl+alt+left=text:\x01
+keybind = ctrl+alt+right=text:\x05
+
+# Ctrl+Alt+Up/Down: scroll to top/bottom
+keybind = ctrl+alt+up=scroll_to_top
+keybind = ctrl+alt+down=scroll_to_bottom
+
+# Ctrl+Alt+Backspace: delete to beginning of line
+keybind = ctrl+alt+backspace=text:\x15
+
+# Ctrl+Shift+K: clear terminal
+keybind = ctrl+shift+k=text:\x0c

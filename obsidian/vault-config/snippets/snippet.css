@@ -1,0 +1,25 @@
+body {
+  --file-line-width: 800px;
+  /* Compact line spacing in both the editor and reading view. */
+  --setting-line-height: 1.5 !important;
+  --line-height-normal: 1.5 !important;
+
+  /* Darker Claude-style terracotta for comfortable reading on light backgrounds. */
+  --claude-orange-rgb: 184, 92, 60;
+  --claude-orange: rgb(var(--claude-orange-rgb));
+  --folder-color: var(--claude-orange) !important;
+  --h2-color-rgb: var(--claude-orange-rgb) !important;
+  --h2-color: var(--claude-orange) !important;
+}
+
+/* Yellow Markdown syntax and external links in reading view and the editor. */
+body :is(.markdown-rendered, .markdown-source-view) {
+  --color-yellow-rgb: var(--claude-orange-rgb);
+  --color-yellow: var(--claude-orange);
+  --code-property: var(--claude-orange);
+  --code-variable: var(--claude-orange);
+  --link-external-color-rgb: var(--claude-orange-rgb);
+  --link-external-color: var(--claude-orange);
+  --link-external-color-hover: var(--claude-orange);
+  --link-external-color-underline: var(--claude-orange);
+}

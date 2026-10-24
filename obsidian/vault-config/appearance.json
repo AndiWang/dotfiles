@@ -1,0 +1,10 @@
+{
+  "theme": "moonstone",
+  "baseFontSizeAction": false,
+  "enabledCssSnippets": [
+    "snippet"
+  ],
+  "textFontFamily": "",
+  "cssTheme": "Maple",
+  "interfaceFontFamily": "SF Pro Text"
+}

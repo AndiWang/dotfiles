@@ -1,0 +1,80 @@
+# Shell
+command = /bin/zsh -l
+
+# Font
+font-family = Inconsolata
+font-style = Regular
+font-style-bold = Bold
+font-style-italic = Italic
+font-style-bold-italic = Bold Italic
+font-size = 14
+font-thicken = true
+adjust-cell-height = 2
+
+# Window
+window-padding-x = 12
+window-padding-y = 10
+background-opacity = 1
+background-blur = 20
+window-decoration = auto
+macos-option-as-alt = true
+
+# Tabs
+macos-titlebar-style = tabs
+
+# Scrollback
+scrollback-limit = 10000
+mouse-scroll-multiplier = 3
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+shell-integration-features = no-cursor
+# Ayu overrides
+# cursor-color = #7fd962
+# cursor-text = #0b0e14
+# selection-foreground = #bfbdb6
+# selection-background = #1b3a5b
+
+# Selection
+copy-on-select = clipboard
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Theme
+theme = Monokai Pro Light Sun
+
+# Bold text color (Ayu)
+bold-color = #d97757
+
+# Link handling
+link-url = true
+
+# Keybindings
+# Cmd+Left/Right: beginning/end of line
+keybind = super+left=text:\x01
+keybind = super+right=text:\x05
+
+# Cmd+Up/Down: scroll to top/bottom
+keybind = super+up=scroll_to_top
+keybind = super+down=scroll_to_bottom
+
+# Cmd+Backspace: delete to beginning of line
+keybind = super+backspace=text:\x15
+
+# Alt+Left/Right: word navigation
+keybind = alt+left=text:\x1bb
+keybind = alt+right=text:\x1bf
+
+# Alt+Backspace: delete word
+keybind = alt+backspace=text:\x17
+
+# Cmd+K: clear terminal
+keybind = super+k=text:\x0c
+
+# Shift+Enter for Claude Code
+keybind = shift+enter=text:\x1b\x0d
+
+# Linux keybind extras (optional include)
+config-file = ?config.linux
