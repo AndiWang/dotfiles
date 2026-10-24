@@ -67,7 +67,7 @@ mkdir -p ~/Projects
 ```
 (If the remote differs, ask the user.) **Verify:** `ls ~/Projects/dotfiles/install.sh`
 
-## Step 3 — CLI tools
+## Step 3 — CLI tools (GitHub CLI, Starship, z)
 
 **GitHub CLI**
 ```bash
@@ -81,43 +81,17 @@ sudo apt-get update -y && sudo apt-get install -y gh
 
 **z** (directory jumper; `.zshrc` sources it from here) — `git clone --depth 1 https://github.com/rupa/z ~/.local/share/z`
 
-**Node.js LTS + Bun**
-```bash
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt-get install -y nodejs
-curl -fsSL https://bun.sh/install | bash
-```
-**Typst**
-```bash
-tmp=$(mktemp -d) && curl -fsSL https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ -C "$tmp"
-mkdir -p ~/.local/bin && mv "$tmp"/typst-*/typst ~/.local/bin/ && rm -rf "$tmp"
-```
-**Python tools** (Mac had ipython, jupyterlab, pillow, verovio via Homebrew)
-```bash
-pipx install ipython
-pipx install jupyterlab
-pipx inject jupyterlab pillow verovio
-```
-**Verify:** `gh --version && starship --version && test -f ~/.local/share/z/z.sh && node -v && ~/.bun/bin/bun -v && ~/.local/bin/typst --version && ipython --version && jupyter-lab --version`
+**Verify:** `gh --version && starship --version && test -f ~/.local/share/z/z.sh`
 
 ## Step 4 — Claude Code (and Codex CLI)
 
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
-npm install -g @openai/codex   # optional; Mac has ~/.codex in use
+# optional, needs Node/npm installed first: npm install -g @openai/codex
 ```
 **Verify:** `~/.local/bin/claude --version`
 
-## Step 5 — Docker
-
-- **[native]** `curl -fsSL https://get.docker.com | sudo sh && sudo usermod -aG docker "$USER"` (user must log out/in for the group).
-- **[WSL]** Don't install Docker Engine in Ubuntu. Install Docker Desktop on Windows:
-  `winget.exe install -e --id Docker.DockerDesktop --accept-source-agreements --accept-package-agreements`
-  **[user]** Start Docker Desktop → Settings → Resources → WSL integration → enable this Ubuntu distro.
-
-**Verify:** `docker run --rm hello-world`
-
-## Step 6 — Place dotfiles, fonts, Obsidian config
+## Step 5 — Place dotfiles, fonts, Obsidian config
 
 ```bash
 ~/Projects/dotfiles/install.sh
@@ -136,14 +110,14 @@ fc-list | grep -ci 'Inter'       # > 0
 ls ~/Workspace/.obsidian/themes/Maple
 ```
 
-## Step 7 — Default shell → zsh
+## Step 6 — Default shell → zsh
 
 ```bash
 [ "$(basename "$SHELL")" = zsh ] || sudo chsh -s "$(command -v zsh)" "$USER"
 ```
 **Verify:** `getent passwd "$USER" | cut -d: -f7` ends in `zsh`, and `zsh -ic 'type gs; type z; echo $STARSHIP_SHELL'` shows the alias, the `z` function and `zsh`.
 
-## Step 8 — Ghostty (terminal)
+## Step 7 — Ghostty (terminal)
 
 Requires a display (native desktop, or WSLg on WSL).
 ```bash
@@ -160,7 +134,7 @@ Notes:
 - macOS `Cmd` keybinds become `Super`, which Windows and GNOME capture. `config.linux` adds `Ctrl+Alt+←/→` (line start/end), `Ctrl+Alt+↑/↓` (scroll top/bottom), `Ctrl+Alt+Backspace` (delete to line start), `Ctrl+Shift+K` (clear). Home/End also work.
 - **[user]** Mac renders 14pt smaller than Linux does. If the text looks bigger than on the Mac, add `font-size = 11` to `config/ghostty/config.linux`.
 
-## Step 9 — **[WSL]** Windows side: fonts + Windows Terminal
+## Step 8 — **[WSL]** Windows side: fonts + Windows Terminal
 
 Even if Ghostty runs through WSLg, Windows Terminal is the default terminal for WSL, so make it match.
 
@@ -191,7 +165,7 @@ Even if Ghostty runs through WSLg, Windows Terminal is the default terminal for 
    Also set top-level `"copyOnSelect": true` and `"defaultProfile"` to the Ubuntu profile's guid.
 4. **[user]** Reopen Windows Terminal and confirm the light Monokai background (`#F8EFE7`) and Inconsolata font.
 
-## Step 10 — Obsidian
+## Step 9 — Obsidian
 
 - Install: `sudo snap install obsidian --classic` (on WSL it runs through WSLg against the Linux vault).
 - **[user]** Open Obsidian → "Open folder as vault" → `~/Workspace`. Theme Maple and the `snippet` CSS snippet should already be on (Settings → Appearance).
@@ -199,7 +173,7 @@ Even if Ghostty runs through WSLg, Windows Terminal is the default terminal for 
 
 **Verify:** `snap list obsidian` and `grep -q Maple ~/Workspace/.obsidian/appearance.json`
 
-## Step 11 — Google Chrome
+## Step 10 — Google Chrome
 
 - **[native]**
   ```bash
@@ -210,7 +184,7 @@ Even if Ghostty runs through WSLg, Windows Terminal is the default terminal for 
 - **[WSL]** Install on Windows: `winget.exe install -e --id Google.Chrome --accept-source-agreements --accept-package-agreements`. Verify: `winget.exe list --id Google.Chrome`
 - **[user]** Sign in to Chrome to sync bookmarks and extensions, and install the "Claude in Chrome" extension from the Chrome Web Store.
 
-## Step 12 — ZCode (Z.ai coding agent)
+## Step 11 — ZCode (Z.ai coding agent)
 
 Mac runs ZCode 3.16.x. Download it only from the official site, https://zcode.z.ai. App data (`~/.zcode`) holds credentials and is **not** in this repo, so sign in again.
 
@@ -233,7 +207,7 @@ Mac runs ZCode 3.16.x. Download it only from the official site, https://zcode.z.
 
 **Verify:** `test -x ~/Applications/ZCode.AppImage` (native) or ZCode appears in the Windows Start menu (WSL).
 
-## Step 13 — Editors (Cursor, VS Code)
+## Step 12 — Editors (Cursor, VS Code)
 
 Mac uses Cursor (theme "Monokai Dimmed", Ruff for Python, Claude Code in the panel).
 
@@ -254,7 +228,7 @@ Mac uses Cursor (theme "Monokai Dimmed", Ruff for Python, Claude Code in the pan
 
 **Verify:** `cursor --version` (native) or `winget.exe list --id Anysphere.Cursor` (WSL).
 
-## Step 14 — **[user]** Logins
+## Step 13 — **[user]** Logins
 
 - `gh auth login` (HTTPS, browser). Verify: `gh auth status`.
 - `claude` → log in. Then install the plugins enabled in `claude/settings.json`:
@@ -271,9 +245,8 @@ Mac uses Cursor (theme "Monokai Dimmed", Ruff for Python, Claude Code in the pan
 ## Final checklist (print this with ✅/❌)
 
 - [ ] Ubuntu version / WSL-or-native recorded
-- [ ] apt base packages, gh, starship, z, node, bun, typst, ipython, jupyterlab
+- [ ] apt base packages, gh, starship, z
 - [ ] Claude Code installed, logged in, plugins installed
-- [ ] Docker `hello-world` runs
 - [ ] `install.sh` ran; configs are symlinks into `~/Projects/dotfiles`
 - [ ] Fonts Inconsolata / Inconsolata Nerd Font / Inter in `fc-list` (and on Windows for WSL)
 - [ ] Login shell is zsh with the starship prompt
