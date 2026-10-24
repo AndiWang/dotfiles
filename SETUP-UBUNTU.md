@@ -199,7 +199,41 @@ Even if Ghostty runs through WSLg, Windows Terminal is the default terminal for 
 
 **Verify:** `snap list obsidian` and `grep -q Maple ~/Workspace/.obsidian/appearance.json`
 
-## Step 11 — Editors (Cursor, VS Code)
+## Step 11 — Google Chrome
+
+- **[native]**
+  ```bash
+  wget -qO /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  sudo apt-get install -y /tmp/chrome.deb && rm /tmp/chrome.deb
+  ```
+  (adds Google's apt repo, so it auto-updates). Verify: `google-chrome --version`
+- **[WSL]** Install on Windows: `winget.exe install -e --id Google.Chrome --accept-source-agreements --accept-package-agreements`. Verify: `winget.exe list --id Google.Chrome`
+- **[user]** Sign in to Chrome to sync bookmarks and extensions, and install the "Claude in Chrome" extension from the Chrome Web Store.
+
+## Step 12 — ZCode (Z.ai coding agent)
+
+Mac runs ZCode 3.16.x. Download it only from the official site, https://zcode.z.ai. App data (`~/.zcode`) holds credentials and is **not** in this repo, so sign in again.
+
+- **[WSL]** Use the Windows build: download the Windows x64 installer from https://zcode.z.ai into `$(wslpath "$(cmd.exe /c 'echo %USERPROFILE%' 2>/dev/null | tr -d '\r')")/Downloads` and run it with `cmd.exe /c start "" "<installer>.exe"`. **[user]** finish the setup wizard.
+- **[native]** The Linux build is in beta. If https://zcode.z.ai offers a Linux x64 AppImage, install it:
+  ```bash
+  mkdir -p ~/Applications && mv ~/Downloads/ZCode*.AppImage ~/Applications/ZCode.AppImage
+  chmod +x ~/Applications/ZCode.AppImage
+  sudo apt-get install -y libfuse2t64 || sudo apt-get install -y libfuse2   # AppImage runtime
+  mkdir -p ~/.local/share/applications && cat > ~/.local/share/applications/zcode.desktop <<EOF
+  [Desktop Entry]
+  Name=ZCode
+  Exec=$HOME/Applications/ZCode.AppImage --no-sandbox %U
+  Type=Application
+  Categories=Development;
+  EOF
+  ```
+  If the site has no Linux download, stop and tell the user (they may get it from Z.ai's beta group). Don't use unofficial repackages.
+- **[user]** Launch ZCode and log in with the Z.ai account.
+
+**Verify:** `test -x ~/Applications/ZCode.AppImage` (native) or ZCode appears in the Windows Start menu (WSL).
+
+## Step 13 — Editors (Cursor, VS Code)
 
 Mac uses Cursor (theme "Monokai Dimmed", Ruff for Python, Claude Code in the panel).
 
@@ -220,7 +254,7 @@ Mac uses Cursor (theme "Monokai Dimmed", Ruff for Python, Claude Code in the pan
 
 **Verify:** `cursor --version` (native) or `winget.exe list --id Anysphere.Cursor` (WSL).
 
-## Step 12 — **[user]** Logins
+## Step 14 — **[user]** Logins
 
 - `gh auth login` (HTTPS, browser). Verify: `gh auth status`.
 - `claude` → log in. Then install the plugins enabled in `claude/settings.json`:
@@ -246,6 +280,8 @@ Mac uses Cursor (theme "Monokai Dimmed", Ruff for Python, Claude Code in the pan
 - [ ] Ghostty installed, `+validate-config` clean, Monokai Pro Light Sun + Inconsolata
 - [ ] [WSL] Windows Terminal uses Monokai Pro Light Sun + Inconsolata, Shift+Enter bound
 - [ ] Obsidian installed, `~/Workspace` vault with Maple theme
+- [ ] Google Chrome installed
+- [ ] ZCode installed and logged in
 - [ ] Cursor installed with settings + extensions
 - [ ] `gh auth status` OK
 
